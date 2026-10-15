@@ -26,11 +26,11 @@ User -- TrackStatus
 Officer -- Login
 Officer -- Review
 
-Citizenship ..> : include SendNotice
-AttachDocs ..> : include SendNotice
+SendNotice ..> : include Citizenship
+SendNotice ..> : include AttachDocs
 Register ..> : include Confirm
 Review ..> : include IssueDoc
 
-TrackStatus ..> : extend GetDoc
+GetDoc ..> : extend TrackStatus
 Reject ..> : extend Review
 ```
