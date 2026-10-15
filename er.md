@@ -20,12 +20,6 @@ erDiagram
         datetime confirmed_at
     }
 
-    PROPERTY {
-        int id PK
-        int owner_id FK
-        string address
-    }
-
     COUNTRY {
         string iso_code PK
     }
@@ -40,20 +34,15 @@ erDiagram
         int priority
     }
 
-    FOREIGNER {
-        int id PK
-        string last_name
-        string first_name
-        date birth_date
-        int citizenship_id FK
-    }
-
     NOTIFICATION {
         int id PK
         int owner_id FK
-        int foreigner_id FK
-        int property_id FK
         int deadline_rule_id FK
+        string foreigner_last_name
+        string foreigner_first_name
+        date foreigner_birth_date
+        int citizenship_iso_code FK
+        string property_address
         date entry_date "дата въезда в РФ"
         date arrival_date "дата прибытия по адресу"
         date deadline_date "рассчитанный срок"
@@ -78,11 +67,7 @@ erDiagram
     }
 
     USER ||--o{ PHONE_CONFIRMATION : "подтверждает"
-    USER ||--o{ PROPERTY : "владеет"
     USER ||--o{ NOTIFICATION : "подаёт"
-    PROPERTY ||--o{ NOTIFICATION : "адрес пребывания"
-    FOREIGNER ||--o{ NOTIFICATION : "ставится на учёт"
-    COUNTRY ||--o{ FOREIGNER : "гражданство"
     COUNTRY |o--o{ DEADLINE_RULE : "определяет срок"
     DEADLINE_RULE ||--o{ NOTIFICATION : "применён"
     NOTIFICATION ||--o{ ATTACHMENT : "содержит"
