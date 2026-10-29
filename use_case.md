@@ -33,8 +33,8 @@ SendNotice ..> : include AttachDocs
 SendRevisedNotice ..> : include AttachDocs
 Register ..> : include Confirm
 Login ..> : include Confirm
-Review ..> : include IssueDoc
 
+Review ..> : extend IssueDoc
 GetDoc ..> : extend TrackStatus
 SendRevisedNotice ..> : extend TrackStatus
 Reject ..> : extend Review
